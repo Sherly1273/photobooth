@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cam-page">
+  <div class="page-bg"></div>
+
+  <div class="cam-wrapper">
+
+    <div class="cam-left">
+      <div class="cam-screen">
+        <video id="video-preview" autoplay playsinline muted></video>
+        <div class="countdown-badge" id="countdown-display"></div>
+      </div>
+      <button class="take-btn" id="shoot-btn" onclick="startShooting()">Take a photo</button>
+    </div>
+
+    <div class="cam-strip" id="cam-strip">
+      <div class="cam-photo" id="prev1">
+        <span class="cam-number">1</span>
+      </div>
+      <div class="cam-photo" id="prev2">
+        <span class="cam-number">2</span>
+      </div>
+      <div class="cam-photo" id="prev3">
+        <span class="cam-number">3</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  /* Terapkan frame dari localStorage */
+  const frameImages = {
+    polkadot:  "url('frame1.jfif')",
+    butterfly: "url('frame2.jfif')",
+    floral:    "url('frame3.jfif')",
+    leopard:   "url('frame4.jfif')",
+    ldr:       "url('frame5.jfif')",
+    star:      "url('frame6.jfif')",
+  };
+
+  const frame = localStorage.getItem('selectedFrame') || 'polkadot';
+  const strip = document.getElementById('cam-strip');
+  strip.style.backgroundImage = frameImages[frame];
+  strip.style.backgroundSize = 'cover';
+  strip.style.backgroundPosition = 'center';
+
+  startCamera();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Frame</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+  <div class="page-bg"></div>
+
+  <h1 class="page-title">Choose frame</h1>
+
+  <div class="content">
+    <div class="frame-grid">
+
+      <div class="frame-card" onclick="selectFrame(this, 'polkadot')">
+        <img src="frame1.jfif" alt="Polkadot Hijau">
+      </div>
+
+      <div class="frame-card" onclick="selectFrame(this, 'butterfly')">
+        <img src="frame2.jfif" alt="Butterfly Pink">
+      </div>
+
+      <div class="frame-card" onclick="selectFrame(this, 'floral')">
+        <img src="frame3.jfif" alt="Floral Vintage">
+      </div>
+
+      <div class="frame-card" onclick="selectFrame(this, 'leopard')">
+        <img src="frame4.jfif" alt="Leopard Merah">
+      </div>
+
+      <div class="frame-card" onclick="selectFrame(this, 'ldr')">
+        <img src="frame5.jfif" alt="LDR Collage">
+      </div>
+
+      <div class="frame-card" onclick="selectFrame(this, 'star')">
+        <img src="frame6.jfif" alt="Star Hitam">
+      </div>
+
+    </div>
+
+    <div class="preview-strip" id="preview-strip">
+      <div class="preview-photo"></div>
+      <div class="preview-photo"></div>
+      <div class="preview-photo"></div>
+    </div>
+  </div>
+
+  <button class="choose-btn" onclick="goToCamera()">Choose</button>
+
+</div>  <!-- penutup .page -->
+
+<script>
+  let selectedFrame = null;
+
+  const frameImages = {
+    polkadot:  "url('frame1.jfif')",
+    butterfly: "url('frame2.jfif')",
+    floral:    "url('frame3.jfif')",
+    leopard:   "url('frame4.jfif')",
+    ldr:       "url('frame5.jfif')",
+    star:      "url('frame6.jfif')",
+  };
+
+  function selectFrame(el, frame) {
+    document.querySelectorAll('.frame-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedFrame = frame;
+
+    const strip = document.getElementById('preview-strip');
+    strip.style.backgroundImage = frameImages[frame];
+    strip.style.backgroundSize = 'cover';
+    strip.style.backgroundPosition = 'center';
+  }
+
+  function goToCamera() {
+    if (!selectedFrame) {
+      alert('Select the frame first!');
+      return;
+    }
+    localStorage.setItem('selectedFrame', selectedFrame);
+    location.href = 'camera.html';
+  }
+</script>
+
+</body>
+</html>
